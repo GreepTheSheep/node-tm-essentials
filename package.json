@@ -1,0 +1,32 @@
+{
+  "name": "tm-essentials",
+  "version": "1.0.0",
+  "description": "A lightweight library in Node.js that provides formatting features and little additions for any development related to Trackmania.",
+  "main": "src/index.js",
+  "types": "typings/index.d.ts",
+  "scripts": {
+    "prepack": "echo Generating typings... && tsc",
+    "types": "tsc",
+    "lint": "eslint . --fix",
+    "test": "eslint . && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreepTheSheep/node-tm-essentials.git"
+  },
+  "keywords": [
+    "trackmania",
+    "essentials"
+  ],
+  "author": "Greep",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GreepTheSheep/node-tm-essentials/issues"
+  },
+  "homepage": "https://github.com/GreepTheSheep/node-tm-essentials#readme",
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  }
+}
