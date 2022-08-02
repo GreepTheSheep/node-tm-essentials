@@ -3,6 +3,8 @@
 [![npm](https://img.shields.io/npm/v/tm-essentials?logo=npm&style=for-the-badge)](https://npmjs.com/tm-essentials)
 [![GitHub release](https://img.shields.io/github/v/release/GreepTheSheep/node-tm-essentials?logo=github&style=for-the-badge)](https://github.com/GreepTheSheep/node-tm-essentials/releases/latest)
 
+[![Unit Tests](https://github.com/GreepTheSheep/node-tm-essentials/actions/workflows/test.yml/badge.svg)](https://github.com/GreepTheSheep/node-tm-essentials/actions/workflows/test.yml)
+
 A light-weight library that provides formatting features for Trackmania games.
 
 ## Text formatting
