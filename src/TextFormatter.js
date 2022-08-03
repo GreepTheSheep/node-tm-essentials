@@ -5,7 +5,7 @@ class TextFormatter {
      * @type {RegExp}
      * @private
      */
-    static deformatRegex = /(\$[wnoitsgz><]|\$[lh]\[.+\]|\$[lh]|\$[0-9a-f]{1,3})/gi;
+    static deformatRegex = /\$((\$)|[0-9a-f]{2,3}|[lh]\[.*?\]|.)/gi;
 
     /**
      * Regex to match all the color formatting codes
@@ -27,7 +27,7 @@ class TextFormatter {
      * @returns {string}
      */
     static deformat(input) {
-        return input.replace(this.deformatRegex, "");
+        return input.replace(this.deformatRegex, "$2");
     }
 
     /**
