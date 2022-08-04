@@ -14,10 +14,17 @@ A light-weight library that provides formatting features for Trackmania games.
 npm install tm-essentials
 ```
 
+Then you can retrieve the library with:
+```js
+const TMEssentials = require('tm-essentials');
+```
+
 ### Browser
 ```html
 <script src="https://unpkg.com/tm-essentials"></script>
 ```
+
+Then you can retrieve the library from the global variable `TMEssentials`
 
 ## Text formatting
 
