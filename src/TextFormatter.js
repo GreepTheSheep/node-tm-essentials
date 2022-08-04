@@ -1,5 +1,7 @@
 class TextFormatter {
 
+    // Credits to @ThaumicTom for the deformat regex
+
     /**
      * Regex to match all the formatting codes
      * @type {RegExp}

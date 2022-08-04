@@ -21,7 +21,17 @@
     "trackmania",
     "essentials"
   ],
-  "author": "Greep",
+  "author": {
+    "name" : "Greep",
+    "url" : "http://greep.gq/"
+  },
+  "contributors": [
+    {
+        "name": "ThaumicTom",
+        "url": "https://thaumictom.de",
+        "email": "tom@thaumictom.de"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/GreepTheSheep/node-tm-essentials/issues"
