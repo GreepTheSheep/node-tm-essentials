@@ -7,6 +7,18 @@
 
 A light-weight library that provides formatting features for Trackmania games.
 
+## Installation
+
+### Node.js
+```bash
+npm install tm-essentials
+```
+
+### Browser
+```html
+<script src="https://unpkg.com/tm-essentials"></script>
+```
+
 ## Text formatting
 
 `TextFormatter.deformat()`
