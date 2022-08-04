@@ -86,3 +86,11 @@ Accounts.toAccountId("Jtmn3kBnSSadky_mLNhp_A") // "26d9a7de-4067-4926-9d93-2fe62
 ```js
 Accounts.toLogin("26d9a7de-4067-4926-9d93-2fe62cd869fc") // "Jtmn3kBnSSadky_mLNhp_A"
 ```
+
+---
+# Contributions
+<div align="center">
+
+![Alt](https://repobeats.axiom.co/api/embed/59ff028ea5e4dff7d2dba03d499552a6f8c445d5.svg "Repobeats analytics image")
+
+</div>
