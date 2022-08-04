@@ -5,7 +5,7 @@ class TextFormatter {
      * @type {RegExp}
      * @private
      */
-    static deformatRegex = /\$((\$)|[0-9a-f]{2,3}|[lh]\[.*?\]|.)/gi;
+    static deformatRegex = /(\$(?:(\$)|[0-9a-f]{2,3}|[lh]\[.*?\]|.))/gi;
 
     /**
      * Regex to match all the color formatting codes
@@ -38,7 +38,7 @@ class TextFormatter {
     static formatAnsi(input) {
         let output = "";
 
-        let split = input.split(this.deformatRegex);
+        let split = input.split(this.deformatRegex).filter((i) => i && i != "$");
 
         split.forEach((part) => {
             output += this.colorToAnsi(part);
