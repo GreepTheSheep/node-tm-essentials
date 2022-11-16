@@ -41,7 +41,7 @@
     "browserify": "^17.0.0",
     "eslint": "^8.27.0",
     "mocha": "^10.1.0",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.3",
     "uglify-js": "^3.17.4"
   }
 }
