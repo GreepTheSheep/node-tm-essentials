@@ -4,6 +4,7 @@ const assert = require('assert'),
 
 describe("Time Formatting", function(){
     it("should convert time to string", function(){
+        assert.equal("-0:01.337", tmessentials.Time.fromMilliseconds(-1337).toTmString());
         assert.equal("0:01.337", tmessentials.Time.fromMilliseconds(1337).toTmString());
         assert.equal("0:13.370", tmessentials.Time.fromSeconds(13.370).toTmString());
         assert.equal("13:37.00", tmessentials.Time.fromMinutes(13.37).toTmString(true));
