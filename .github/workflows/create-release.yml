@@ -1,0 +1,57 @@
+name: Create release
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        type: choice
+        description: Type of update
+        required: true
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  create-release:
+    name: Create release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Git config
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - run: npm version ${{ github.event.inputs.type }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Get Version from package.json
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package.json'
+          prop_path: 'version'
+
+      - name: Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          tag_name: v${{steps.version.outputs.prop}}
+          release_name: v${{steps.version.outputs.prop}}
+          body: "Please fill this body before publishing"
+          draft: true
+          prerelease: false
