@@ -34,7 +34,7 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.gh_token }}
           branch: ${{ github.ref }}
 
       - name: Get Version from package.json
@@ -48,7 +48,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.gh_token}}
         with:
           tag_name: v${{steps.version.outputs.prop}}
           release_name: v${{steps.version.outputs.prop}}
