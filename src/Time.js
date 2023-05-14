@@ -23,7 +23,7 @@ class Time {
         } else {
             if (Math.sign(this.time) == -1) output += "-";
             this.time = Math.abs(this.time);
-            
+
             let ms = this.time % 1000,
                 s = Math.floor(this.time / 1000) % 60,
                 m = Math.floor(this.time / 60000) % 60,
