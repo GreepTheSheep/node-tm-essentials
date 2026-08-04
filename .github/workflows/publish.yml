@@ -28,11 +28,14 @@ jobs:
         run: npm ci
 
       - name: Publish on NPM
-        run: npm publish --provenance --access public
+        run: npm publish
 
   publish-github:
     name: Publish on GitHub Packages
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -48,7 +51,9 @@ jobs:
         run: npm ci
 
       - name: Set package scope for GitHub Packages
-        run: npm pkg set name="@GreepTheSheep/tm-essentials"
+        run: |
+          npm pkg set name="@GreepTheSheep/tm-essentials"
+          npm pkg set publishConfig.registry="https://npm.pkg.github.com"
 
       - name: Publish on GitHub Packages
         run: npm publish
