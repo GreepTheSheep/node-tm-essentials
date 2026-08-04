@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set package scope for GitHub Packages
+        run: npm pkg set name="@GreepTheSheep/tm-essentials"
+
       - name: Publish on GitHub Packages
         run: npm publish
         env:
