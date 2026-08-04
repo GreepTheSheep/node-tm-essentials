@@ -6,6 +6,7 @@ on:
     types: [released]
 
 permissions:
+  id-token: write
   packages: write
   contents: read
 
