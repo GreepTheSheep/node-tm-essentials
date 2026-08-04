@@ -18,7 +18,7 @@ class Accounts {
             if (i == 4 || i == 6 || i == 8 || i == 10) {
                 ret += '-';
             }
-            ret += bytes.charCodeAt(i).toString(16);
+            ret += bytes.charCodeAt(i).toString(16).padStart(2, '0');
         }
         return ret;
     }
