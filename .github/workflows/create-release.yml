@@ -12,6 +12,9 @@ on:
           - minor
           - patch
 
+permissions:
+  contents: write
+
 jobs:
   create-release:
     name: Create release
@@ -47,12 +50,12 @@ jobs:
 
       - name: Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{secrets.gh_token}}
         with:
           tag_name: v${{steps.version.outputs.prop}}
-          release_name: v${{steps.version.outputs.prop}}
           body: "Please fill this body before publishing"
           draft: true
           prerelease: false
+          generate_release_notes: true
