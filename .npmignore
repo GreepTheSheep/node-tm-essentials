@@ -1,2 +1,10 @@
 !dist
 !typings/
+.github/
+.vscode/
+test/
+
+.editorconfig
+.gitignore
+eslint.config.js
+tsconfig.json
