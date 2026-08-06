@@ -4,6 +4,9 @@
       "allowJs": true,
       "declaration": true,
       "emitDeclarationOnly": true,
-      "outDir": "typings"
+      "forceConsistentCasingInFileNames": true,
+      "outDir": "typings",
+      "rootDir": "./src",
+      "strict": true
     }
 }
