@@ -44,7 +44,7 @@ jobs:
         if: github.event.workflow_dispatch
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.gh_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           force: true
 
@@ -59,7 +59,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v3
         env:
-          GITHUB_TOKEN: ${{secrets.gh_token}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{steps.version.outputs.prop}}
           body: "Please fill this body before publishing"
