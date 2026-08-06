@@ -19,6 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
+          node-version: '24'
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
@@ -26,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Publish on NPM
-        run: npm publish --provenance --access public
+        run: npm publish
 
   publish-github:
     name: Publish on GitHub Packages
