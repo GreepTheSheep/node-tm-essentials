@@ -43,7 +43,7 @@ class TextFormatter {
         let split = input.split(this.deformatRegex).filter((i) => i && i != "$");
 
         split.forEach((part) => {
-            output += this.colorToAnsi(part);
+            output += this.#colorToAnsi(part);
         });
 
         output += this.AnsiDefault;
@@ -57,7 +57,7 @@ class TextFormatter {
      * @returns {string}
      * @private
      */
-    static colorToAnsi(input) {
+    static #colorToAnsi(input) {
         if (!input.startsWith("$")) return input;
         if (input.endsWith("z")) return this.AnsiDefault;
 
