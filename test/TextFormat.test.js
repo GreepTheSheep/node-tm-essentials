@@ -20,6 +20,13 @@ describe("Text Formatting", function(){
         );
     });
 
+    it("should format short color codes with ANSI escape codes", function(){
+        assert.equal(
+            "\u001b[38;2;255;0;0mRed \u001b[38;2;0;255;0mGreen \u001b[38;2;0;0;255mBlue \u001b[38;2;255;255;0mYellow \u001b[38;2;255;0;0mRed\u001b[39m\u001b[22m",
+            tmessentials.TextFormatter.formatAnsi("$fRed $0fGreen $00fBlue $ffYellow $f0Red")
+        );
+    });
+
     it("should format text with ANSI escape codes + deformat", function(){
         assert.equal(
             "\u001b[38;2;255;255;0mHello \u001b[38;2;0;255;255mWorld\u001b[38;2;255;255;255m! \u001b[38;2;0;0;0mI'm \u001b[38;2;255;255;255ma \u001b[38;2;0;0;255mBlue \u001b[38;2;255;0;0mRed \u001b[38;2;0;255;0mGreen \u001b[39m\u001b[22mText \u001b[38;2;255;255;0mWide\u001b[39m\u001b[22m",
