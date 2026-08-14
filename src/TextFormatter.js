@@ -59,7 +59,7 @@ class TextFormatter {
      */
     static #colorToAnsi(input) {
         if (!input.startsWith("$")) return input;
-        if (input.endsWith("z")) return this.AnsiDefault;
+        if (input.endsWith("z") || input.endsWith("g")) return this.AnsiDefault;
 
         if (input.match(this.colorRegex)) {
             let colorInt16 = parseInt(input.split("$").join(""), 16),
