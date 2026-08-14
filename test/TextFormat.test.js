@@ -48,10 +48,79 @@ describe("Text Formatting", function(){
         );
     });
 
+    it("should support uppercase variants of the formatting codes", function(){
+        assert.equal(
+            "\u001b[1mBold \u001b[3mBold Italic\u001b[39m\u001b[22m\u001b[23m Normal\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$OBold $IBold Italic$Z Normal")
+        );
+
+        assert.equal(
+            "\u001b[38;2;255;0;0mRed HELLO\u001b[39mGREEN\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$F00Red $W$THeLLo$M$Ggreen")
+        );
+
+        assert.equal(
+            "\u001b]8;;https://trackmania.com/\u001b\\Trackmania\u001b]8;;\u001b\\\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$L[https://trackmania.com/]Trackmania$L")
+        );
+    });
+
     it("should reset the color but keep the style on $g", function(){
         assert.equal(
             "\u001b[1m\u001b[38;2;255;0;0mRed \u001b[39mstill bold\u001b[39m\u001b[22m\u001b[23m",
             tmessentials.TextFormatter.formatAnsi("$o$f00Red $gstill bold")
+        );
+    });
+
+    it("should format short links with OSC 8 hyperlinks", function(){
+        assert.equal(
+            "\u001b]8;;https://trackmania.com/\u001b\\https://trackmania.com/\u001b]8;;\u001b\\\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$lhttps://trackmania.com/$l")
+        );
+    });
+
+    it("should format explicit links with OSC 8 hyperlinks", function(){
+        assert.equal(
+            "\u001b]8;;https://trackmania.com/\u001b\\Trackmania\u001b]8;;\u001b\\\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$l[https://trackmania.com/]Trackmania$l")
+        );
+    });
+
+    it("should format manialinks with OSC 8 hyperlinks", function(){
+        assert.equal(
+            "\u001b]8;;manialink:example\u001b\\Menu\u001b]8;;\u001b\\\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$l[manialink:example]Menu$l")
+        );
+    });
+
+    it("should keep the color inside a link and close it on $z", function(){
+        assert.equal(
+            "\u001b[38;2;255;0;0m\u001b]8;;https://trackmania.com/\u001b\\Red\u001b]8;;\u001b\\\u001b[39m\u001b[22m\u001b[23m\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$f00$l[https://trackmania.com/]Red$z")
+        );
+    });
+
+    it("should disable OSC 8 hyperlinks with the disableLinks option", function(){
+        assert.equal(
+            "Trackmania\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$l[https://trackmania.com/]Trackmania$l", { disableLinks: true })
+        );
+
+        assert.equal(
+            "https://trackmania.com/\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$lhttps://trackmania.com/$l", { disableLinks: true })
+        );
+    });
+
+    it("should darken light colors on light backgrounds", function(){
+        assert.equal(
+            "\u001b[38;2;68;68;255mHello\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$ff0Hello", { lightBackground: true })
+        );
+
+        assert.equal(
+            "\u001b[38;2;0;0;0mBlack\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$000Black", { lightBackground: true })
         );
     });
 
