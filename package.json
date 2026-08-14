@@ -31,6 +31,10 @@
       "name": "ThaumicTom",
       "url": "https://thaumictom.de",
       "email": "tom@thaumictom.de"
+    },
+    {
+      "name": "Baptiste Lafontaine",
+      "url": "https://magnetik.org"
     }
   ],
   "license": "MIT",
