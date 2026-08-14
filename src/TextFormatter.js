@@ -114,6 +114,7 @@ class TextFormatter {
      */
     static #StyleNarrow = 0x40000;
 
+    // Credits to @magnetik for the original HTML parser
     /**
      * Format the text into HTML format
      * @param {string} input
