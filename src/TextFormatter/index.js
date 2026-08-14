@@ -9,13 +9,13 @@ class TextFormatter {
      * Regex to match all the formatting codes
      * @type {RegExp}
      */
-    static deformatRegex = /(\$(?:(\$)|[0-9a-f]{2,3}|[lh]\[.*?\]|.))/gi;
+    static formatCodesRegex = /(\$(?:(\$)|[0-9a-f]{2,3}|[lh]\[.*?\]|.))/gi;
 
     /**
      * Regex to match all the color formatting codes
      * @type {RegExp}
      */
-    static colorRegex = /\$[0-9a-f]{1,3}/gi;
+    static colorCodesRegex = /\$[0-9a-f]{1,3}/gi;
 
     /**
      * Deformat the text
@@ -23,7 +23,7 @@ class TextFormatter {
      * @returns {string}
      */
     static deformat(input) {
-        return input.replace(this.deformatRegex, "$2");
+        return input.replace(this.formatCodesRegex, "$2");
     }
 
     /**

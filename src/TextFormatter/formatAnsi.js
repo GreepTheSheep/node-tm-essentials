@@ -18,7 +18,7 @@ module.exports = (textFormatter, input, options = {}) => {
 
     let normalized = input.replace(/\$l(?!\[)([^$]+)\$l/gi, "$l[$1]$1$l");
 
-    let split = normalized.split(textFormatter.deformatRegex).filter((i) => i && i != "$");
+    let split = normalized.split(textFormatter.formatCodesRegex).filter((i) => i && i != "$");
 
     split.forEach((part) => {
         let res = tokenToAnsi(textFormatter, part, { bold, italic, uppercase, colored, link, options });
@@ -85,7 +85,7 @@ function tokenToAnsi(textFormatter, input, state) {
     } else if (code == "$l") {
         if (link) output += "\x1B]8;;\x1B\\";
         link = null;
-    } else if (input.startsWith("$") && input.match(textFormatter.colorRegex)) {
+    } else if (input.startsWith("$") && input.match(textFormatter.colorCodesRegex)) {
         let hexColor = input.split("$").join("").padEnd(3, "0");
         if (options.lightBackground) hexColor = invertLight(hexColor);
         let colorInt16 = parseInt(hexColor, 16),
