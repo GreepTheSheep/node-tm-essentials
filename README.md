@@ -56,6 +56,39 @@ let ansiFormat = TextFormatter.deformat(TextFormatter.formatAnsi(formatted));
 console.log(deformatted);
 ```
 
+`TextFormatter.formatHtml()`
+
+This is a port of the original [Maniaplanet style parser](https://github.com/maniaplanet/maniaplanet-style-js-parser) written in pure JS. *Copyright © 2012 - 2026 Nadeo & Baptiste Lafontaine*
+
+```js
+let formatted = "$l[https://kc.jfreu.com]$F00T$D01M$C13U$A14.$815K$727r$528a$329z$23By$03CC$03Co$04Bl$059o$068r$077s$085$l $094v$0A30$0B1.$0C01";
+let htmlFormat = TextFormatter.formatHtml(formatted);
+document.querySelector("#result").innerHTML = htmlFormat;
+```
+
+You can also pass some options in it:
+
+- `disableLinks`: will disable links to external sites (false by default)
+- `lightBackground`: adapt color to be visible on light backgrounds (false by default)
+- `linkTarget`: add a `target` attribute into links
+
+```js
+let formatted = "$l[https://kc.jfreu.com]$F00T$D01M$C13U$A14.$815K$727r$528a$329z$23By$03CC$03Co$04Bl$059o$068r$077s$085$l $094v$0A30$0B1.$0C01";
+let htmlFormat = TextFormatter.formatHtml(formatted, {
+  disableLinks: true,
+  lightBackground: true
+});
+document.querySelector("#result").innerHTML = htmlFormat;
+```
+
+```js
+let formatted = "$l[https://greep.fr]Open this link to a new tab$l with the target attribute";
+let htmlFormat = TextFormatter.formatHtml(formatted, {
+  linkTarget: "_blank"
+});
+document.querySelector("#result").innerHTML = htmlFormat;
+```
+
 ## Time formatting
 
 `Time.time` - Total milliseconds as integer value.
