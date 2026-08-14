@@ -139,4 +139,50 @@ describe("Text Formatting", function(){
             )
         );
     });
+  
+    it("should format text to HTML", function(){
+        assert.equal("foo", tmessentials.TextFormatter.formatHtml("foo"));
+        assert.equal('<span style="font-weight:bold;">tag</span>', tmessentials.TextFormatter.formatHtml("$otag"));
+        assert.equal("hi there", tmessentials.TextFormatter.formatHtml("$uhi there"));
+        assert.equal('<span style="color: #ff0000;">Red</span>', tmessentials.TextFormatter.formatHtml("$f00Red"));
+        assert.equal('<span style="color: #ff0000;">Red</span>', tmessentials.TextFormatter.formatHtml("$fRed"));
+    });
+
+    it("should format links to HTML", function(){
+        assert.equal(
+            '<a href="http://maniaplanet.com">trackmania.com</a>',
+            tmessentials.TextFormatter.formatHtml("$l[http://maniaplanet.com]trackmania.com$l")
+        );
+        assert.equal(
+            '<a href="http://maniaplanet.com">http://maniaplanet.com</a>',
+            tmessentials.TextFormatter.formatHtml("$lhttp://maniaplanet.com$l")
+        );
+        assert.equal(
+            '<a href="http://maniaplanet.com">http://maniaplanet.com</a>',
+            tmessentials.TextFormatter.formatHtml("$lhttp://maniaplanet.com")
+        );
+        assert.equal("", tmessentials.TextFormatter.formatHtml("$l[www.clan-nuitblanche.org]$fff$l"));
+        assert.equal(
+            '<a href="http://maniaplanet.com">maniaplanet</a>',
+            tmessentials.TextFormatter.formatHtml("$l[maniaplanet.com]maniaplanet$l")
+        );
+        assert.equal(
+            '<a href="https://maniaplanet.com">maniaplanet</a>',
+            tmessentials.TextFormatter.formatHtml("$l[https://maniaplanet.com]maniaplanet$l")
+        );
+        assert.equal(
+            '<a href="http://maniaplanet.com" target="_blank">maniaplanet</a>',
+            tmessentials.TextFormatter.formatHtml("$l[maniaplanet.com]maniaplanet$l", { linkTarget: "_blank" })
+        );
+        assert.equal(
+            '<a href="maniaplanet://#manialink=maniaflash">ManiaFlash</a>',
+            tmessentials.TextFormatter.formatHtml("$h[maniaflash]ManiaFlash$h")
+        );
+    });
+
+    it("should format text to HTML with options", function(){
+        assert.equal("maniaplanet.com", tmessentials.TextFormatter.formatHtml("$lmaniaplanet.com", { disableLinks: true }));
+        assert.equal("Maniaplanet", tmessentials.TextFormatter.formatHtml("$l[maniaplanet.com]Maniaplanet", { disableLinks: true }));
+        assert.equal('<span style="color: #444444;">Text</span>', tmessentials.TextFormatter.formatHtml("$fffText", { lightBackground: true }));
+    });
 });
