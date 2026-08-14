@@ -34,7 +34,8 @@
     },
     {
       "name": "Baptiste Lafontaine",
-      "url": "https://magnetik.org"
+      "url": "https://magnetik.org",
+      "email": "baptiste@nadeo.com"
     }
   ],
   "license": "MIT",
