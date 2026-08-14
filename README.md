@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/v/release/GreepTheSheep/node-tm-essentials?label=GitHub%20Release&logo=github&style=for-the-badge)](https://github.com/GreepTheSheep/node-tm-essentials/releases/latest)
 
-[![npm](https://img.shields.io/npm/v/tm-essentials?logo=npm&style=for-the-badge)](https://npmjs.com/tm-essentials) [![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/tm-essentials?label=Package%20Size&logo=npm&style=for-the-badge&color=darkgreen)](https://npmjs.com/tm-essentials)
+[![npm](https://img.shields.io/npm/v/tm-essentials?logo=npm&style=for-the-badge)](https://npmjs.com/tm-essentials) [![NPM Size](https://img.shields.io/bundlephobia/min/tm-essentials?label=Package%20Size&logo=npm&style=for-the-badge&color=darkgreen)](https://npmjs.com/tm-essentials)
 
 [![Unit Tests](https://github.com/GreepTheSheep/node-tm-essentials/actions/workflows/test.yml/badge.svg)](https://github.com/GreepTheSheep/node-tm-essentials/actions/workflows/test.yml)
 
