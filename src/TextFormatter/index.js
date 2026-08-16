@@ -35,9 +35,9 @@ class TextFormatter {
     static formatAnsi = (input, options = {}) => formatAnsi(this, input, options);
 
     /**
-     * Format the text into HTML format
+     * Format the text to HTML format
      * @param {string} input
-     * @param {{disableLinks?: boolean, lightBackground?: boolean, linkTarget?: string}} [options]
+     * @param {formatHtmlOptions} [options]
      * @returns {string}
      */
     static formatHtml = (input, options = {}) => formatHtml(input, options);
@@ -52,4 +52,12 @@ module.exports = TextFormatter;
  * @property {?boolean} disableColor Disable colors
  * @property {?boolean} lightBackground Optimize for light backgrounds
  * @property {?"4bit"|"8bit"|"24bit"} colorDepth The color depth. If omitted, 24bit is used
+ */
+
+/**
+ * @typedef formatHtmlOptions
+ * @type {object}
+ * @property {?boolean} disableLinks Disable links
+ * @property {?boolean} lightBackground Optimize for light backgrounds
+ * @property {?string} linkTarget The “target” attribute for links. Generally, you should use “_blank” to open links in a new tab.
  */
