@@ -3,7 +3,7 @@ class Accounts {
     /**
      * Transform a player login to its account uuid. Returns null if the login is invalid.
      * @param {string} login
-     * @returns {string|null}
+     * @returns {?string}
      */
     static toAccountId(login) {
         if (login.length != 22) return null;
