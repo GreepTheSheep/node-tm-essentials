@@ -20,9 +20,11 @@ class TextFormatter {
     /**
      * Deformat the text
      * @param {string} input
+     * @param {deformatOptions} [options]
      * @returns {string}
      */
-    static deformat(input) {
+    static deformat(input, options = {}) {
+        if (options.colorOnly) return input.replace(this.colorCodesRegex, "");
         return input.replace(this.formatCodesRegex, "$2");
     }
 
@@ -44,6 +46,12 @@ class TextFormatter {
 }
 
 module.exports = TextFormatter;
+
+/**
+ * @typedef deformatOptions
+ * @type {object}
+ * @property {?boolean} colorOnly Deformat only the color codes
+ */
 
 /**
  * @typedef formatAnsiOptions
