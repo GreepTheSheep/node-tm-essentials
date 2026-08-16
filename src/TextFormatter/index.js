@@ -58,7 +58,7 @@ module.exports = TextFormatter;
  * @type {object}
  * @property {?boolean} disableLinks Disable links
  * @property {?boolean} disableColor Disable colors
- * @property {?boolean} lightBackground Optimize for light backgrounds
+ * @property {?boolean} lightBackground Optimize colors for light backgrounds
  * @property {?"4bit"|"8bit"|"24bit"} colorDepth The color depth. If omitted, 24bit is used
  */
 
@@ -66,6 +66,6 @@ module.exports = TextFormatter;
  * @typedef formatHtmlOptions
  * @type {object}
  * @property {?boolean} disableLinks Disable links
- * @property {?boolean} lightBackground Optimize for light backgrounds
+ * @property {?boolean} lightBackground Optimize colors for light backgrounds
  * @property {?string} linkTarget The “target” attribute for links. Generally, you should use “_blank” to open links in a new tab.
  */
