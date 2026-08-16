@@ -51,6 +51,10 @@ console.log(deformatted);
 // Output: TMU.KrazyColors v0.1
 ```
 
+You can pass options in it:
+
+- `colorOnly`: Deformat color codes only
+
 ### `TextFormatter.formatAnsi()`
 
 Will parse the color formatting and convert it to ANSI escape codes. Works best on console output.
@@ -89,7 +93,7 @@ let htmlFormat = TextFormatter.formatHtml(formatted);
 document.querySelector("#result").innerHTML = htmlFormat;
 ```
 
-You can also pass some options in it:
+You can pass options in it:
 
 - `disableLinks`: will disable links to external sites (false by default)
 - `lightBackground`: adapt color to be visible on light backgrounds (false by default)
