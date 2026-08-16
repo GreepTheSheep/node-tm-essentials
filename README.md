@@ -65,7 +65,7 @@ let ansiFormat = TextFormatter.formatAnsi(formatted);
 console.log(ansiFormat);
 ```
 
-You can also pass some options in it:
+You can pass options in it:
 
 - `disableLinks`: will disable links to external sites (false by default)
 - `disableColor`: will disable colors while keeping the text styles (false by default)
@@ -76,11 +76,19 @@ You can also pass some options in it:
 let formatted = "$l[https://kc.jfreu.com/]$F00T$D01M$C13U$A14.$815K$727r$528a$329z$23By$03CC$03Co$04Bl$059o$068r$077s$085$l $094v$0A30$0B1.$0C01";
 let ansiFormat = TextFormatter.formatAnsi(formatted, {
   disableLinks: true,
-  disableColor: true,
   lightBackground: true,
   colorDepth: "8bit"
 });
 console.log(ansiFormat);
+```
+
+```js
+let formatted = "$l[https://kc.jfreu.com/]$F00T$D01M$C13U$A14.$815K$727r$528a$329z$23By$03CC$03Co$04Bl$059o$068r$077s$085$l $094v$0A30$0B1.$0C01";
+let ansiFormatNoColor = TextFormatter.formatAnsi(formatted, {
+  disableLinks: true,
+  disableColor: true
+});
+console.log(ansiFormatNoColor);
 ```
 
 ### `TextFormatter.formatHtml()`
