@@ -27,9 +27,9 @@ class TextFormatter {
     }
 
     /**
-     * Format the text with ANSI escape codes
+     * Format the text to ANSI escape codes
      * @param {string} input
-     * @param {{disableLinks?: boolean, lightBackground?: boolean}} [options]
+     * @param {formatAnsiOptions} [options]
      * @returns {string}
      */
     static formatAnsi = (input, options = {}) => formatAnsi(this, input, options);
@@ -44,3 +44,12 @@ class TextFormatter {
 }
 
 module.exports = TextFormatter;
+
+/**
+ * @typedef formatAnsiOptions
+ * @type {object}
+ * @property {?boolean} disableLinks Disable links
+ * @property {?boolean} disableColor Disable colors
+ * @property {?boolean} lightBackground Optimize for light backgrounds
+ * @property {?"4bit"|"8bit"|"24bit"} colorDepth The color depth. If omitted, 24bit is used
+ */

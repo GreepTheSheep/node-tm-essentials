@@ -1,11 +1,13 @@
 const invertLight = require('./Colors/invertLight'),
-    ansiDefault = "\x1B[39m\x1B[22m\x1B[23m";
+    rgbToAnsi = require('./Colors/rgbToAnsi'),
+    ansiDefault = "\x1B[39m\x1B[22m\x1B[23m",
+    ansiStyleReset = "\x1B[22m\x1B[23m";
 
 /**
  * Format the text with ANSI escape codes
  * @param {import('./index')} textFormatter
  * @param {string} input
- * @param {{disableLinks?: boolean, lightBackground?: boolean}} [options]
+ * @param {formatAnsiOptions} [options]
  * @returns {string}
  */
 module.exports = (textFormatter, input, options = {}) => {
@@ -32,7 +34,7 @@ module.exports = (textFormatter, input, options = {}) => {
 
     if (link) output += "\x1B]8;;\x1B\\";
 
-    output += ansiDefault;
+    output += options.disableColor ? ansiStyleReset : ansiDefault;
 
     return output;
 };
@@ -41,7 +43,8 @@ module.exports = (textFormatter, input, options = {}) => {
  * Convert a text formatting token to ANSI escape codes
  * @param {import('./index')} textFormatter
  * @param {string} input
- * @param {{bold: boolean, italic: boolean, uppercase: boolean, colored: boolean, link: ?string, options: {disableLinks?: boolean, lightBackground?: boolean}}} state
+ * @param {formatAnsiOptions} options
+ * @param {{bold: boolean, italic: boolean, uppercase: boolean, colored: boolean, link: ?string}} state
  * @returns {{output: string, bold: boolean, italic: boolean, uppercase: boolean, colored: boolean, link: ?string}}
  */
 function tokenToAnsi(textFormatter, input, state) {
@@ -69,7 +72,7 @@ function tokenToAnsi(textFormatter, input, state) {
         colored = false;
     } else if (code == "$z") {
         if (link) output += "\x1B]8;;\x1B\\";
-        if (bold || italic || colored) output += ansiDefault;
+        if (bold || italic || colored) output += options.disableColor ? ansiStyleReset : ansiDefault;
         bold = false;
         italic = false;
         uppercase = false;
@@ -86,6 +89,7 @@ function tokenToAnsi(textFormatter, input, state) {
         if (link) output += "\x1B]8;;\x1B\\";
         link = null;
     } else if (input.startsWith("$") && input.match(textFormatter.colorCodesRegex)) {
+        if (options.disableColor) return { output, bold, italic, uppercase, colored, link };
         let hexColor = input.split("$").join("").padEnd(3, "0");
         if (options.lightBackground) hexColor = invertLight(hexColor);
         let colorInt16 = parseInt(hexColor, 16),
@@ -93,7 +97,7 @@ function tokenToAnsi(textFormatter, input, state) {
             g = 0x11 * ((colorInt16 & 0x0F0) >> 4),
             b = 0x11 * ((colorInt16 & 0x00F) >> 0);
 
-        output += "\x1B[38;2;" + r + ";" + g + ";" + b + "m";
+        output += rgbToAnsi(r, g, b, options.colorDepth);
         colored = true;
     } else if (input.startsWith("$")) {
         output += input;

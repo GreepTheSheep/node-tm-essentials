@@ -124,6 +124,32 @@ describe("Text Formatting", function(){
         );
     });
 
+    it("should format colors with 8-bit ANSI escape codes", function(){
+        assert.equal(
+            "\u001b[38;5;226mHello \u001b[38;5;51mWorld\u001b[38;5;231m! \u001b[38;5;16mI'm \u001b[38;5;231ma \u001b[38;5;21mBlue \u001b[38;5;196mRed \u001b[38;5;46mGreen \u001b[39m\u001b[22m\u001b[23mText \u001b[38;5;226mWide\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$ff0Hello $0ffWorld$fff! $000I'm $fffa $00fBlue $f00Red $0f0Green $zText $ff0$wWide", { colorDepth: "8bit" })
+        );
+    });
+
+    it("should format colors with 4-bit ANSI escape codes", function(){
+        assert.equal(
+            "\u001b[93mHello \u001b[96mWorld\u001b[97m! \u001b[30mI'm \u001b[97ma \u001b[94mBlue \u001b[91mRed \u001b[92mGreen \u001b[39m\u001b[22m\u001b[23mText \u001b[93mWide\u001b[39m\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$ff0Hello $0ffWorld$fff! $000I'm $fffa $00fBlue $f00Red $0f0Green $zText $ff0$wWide", { colorDepth: "4bit" })
+        );
+    });
+
+    it("should drop colors but keep the style with the disableColor option", function(){
+        assert.equal(
+            "Hello \u001b[1mBold\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$ff0Hello $oBold", { disableColor: true })
+        );
+
+        assert.equal(
+            "\u001b[1mBold\u001b[22m\u001b[23m Normal\u001b[22m\u001b[23m",
+            tmessentials.TextFormatter.formatAnsi("$o$ff0Bold$z Normal", { disableColor: true })
+        );
+    });
+
     it("should format text with ANSI escape codes + deformat", function(){
         assert.equal(
             "\u001b[38;2;255;255;0mHello \u001b[38;2;0;255;255mWorld\u001b[38;2;255;255;255m! \u001b[38;2;0;0;0mI'm \u001b[38;2;255;255;255ma \u001b[38;2;0;0;255mBlue \u001b[38;2;255;0;0mRed \u001b[38;2;0;255;0mGreen \u001b[39m\u001b[22m\u001b[23mText \u001b[38;2;255;255;0mWide\u001b[39m\u001b[22m\u001b[23m",

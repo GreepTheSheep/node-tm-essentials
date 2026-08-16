@@ -64,13 +64,17 @@ console.log(ansiFormat);
 You can also pass some options in it:
 
 - `disableLinks`: will disable links to external sites (false by default)
+- `disableColor`: will disable colors while keeping the text styles (false by default)
 - `lightBackground`: adapt color to be visible on light backgrounds (false by default)
+- `colorDepth`: color depth of the ANSI escape codes, either `"4bit"`, `"8bit"` or `"24bit"` (`"24bit"` by default)
 
 ```js
 let formatted = "$l[https://kc.jfreu.com/]$F00T$D01M$C13U$A14.$815K$727r$528a$329z$23By$03CC$03Co$04Bl$059o$068r$077s$085$l $094v$0A30$0B1.$0C01";
 let ansiFormat = TextFormatter.formatAnsi(formatted, {
   disableLinks: true,
-  lightBackground: true
+  disableColor: true,
+  lightBackground: true,
+  colorDepth: "8bit"
 });
 console.log(ansiFormat);
 ```
