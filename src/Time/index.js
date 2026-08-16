@@ -1,19 +1,19 @@
 class Time {
     /**
      * Trackmania Time formatters.
-     * @param {number|null} time Time in milliseconds
+     * @param {?number} time Time in milliseconds
      */
     constructor(time) {
         /**
          * Time in milliseconds
-         * @type {number|null}
+         * @type {?number}
          */
         this.time = time;
     }
 
     /**
      * Output the time in the format "hh:mm:ss.ms"
-     * @param {boolean} useHundreds If true, return the time in the hundreds of milliseconds
+     * @param {boolean} [useHundreds=false] False by default. If true, return the time in the hundreds of milliseconds
      * @returns {string}
      */
     toTmString(useHundreds = false) {
